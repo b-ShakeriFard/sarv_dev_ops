@@ -1,0 +1,13 @@
+FROM python:3.10-alpine
+
+WORKDIR /app
+
+COPY python_app.py .
+
+RUN pip install flask pandas redis
+
+EXPOSE 5004
+
+CMD ["python", "python_app.py"]
+
+

@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: frpn-v3-nodejs-pod
+  labels:
+    app: frpn-v3-nodejs-app
+spec:
+  tolerations:
+    - key: "node-role.kubernetes.io/control-plane"
+      operator: "Exists"
+      effect: "NoSchedule"
+  containers:
+    - name: node-container
+      image: localhost:5000/frpn-nodejs-v3-2025-07-22-c:v3
+      ports:
+        - containerPort: 3001
+      env:
+        - name: REDIS_URL
+          value: "redis://redis-service:6379"
+          

@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frn-app-redis-deployment
+  labels:
+    app: frn-v2-redis 
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: frn-v2-redis
+  template:
+    metadata:
+      labels:
+        app: frn-v2-redis
+    spec:
+      tolerations:
+        - key: "node-role.kubernetes.io/control-plane"
+          operator: "Exists"
+          effect: "NoSchedule"
+      containers:
+        - name: redis-container
+          image: localhost:5000/redis:latest
+          ports:
+            - containerPort: 6379
+          env:
+            - name: REDIS_HOST
+              value: "redis-service"
+

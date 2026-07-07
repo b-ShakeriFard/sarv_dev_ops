@@ -1,0 +1,66 @@
+######################-------------------######################
+######################-------------------######################
+
+December 6th - 2024
+Behrouz ShakeriFard
+
+bshakeri@torontomu.ca
+
+#####################-------------------#######################
+#####################-------------------#######################
+
+Tejaris - Three tier web-based Application - Flask Redis NodeJS - Version 2 a
+
+
+This is a three-tier container app, which allows a user to enter two values via a web browser, and see them in another 
+browser (open tab connecting to another port) through a differnt running app.
+
+Architecture is flask-redi-nodeJS
+
+
+
+###############################################################
+The flask portion of this app connects to a running redis container. And through exposing port 5000, it allows 
+a user to access the app via a web browser. User can enter two values through the web-based UI and by clicking on 
+the POST button, the flask app stores those two values inside the redis container.
+Upon successful registery of the values, flask app displays a message of success.
+
+podman run -it -p 5000:5000 --network tejarat-network --name tejaris-frn-flask tejaris-flask-frn-v2a
+
+###############################################################
+
+###############################################################
+Run a redis container, so that your flask app can store (pass on) two values (stored in key1 and key2). These values will be
+available for retrieval (perhaps by NodeJS).
+A pre specified network between could be helpful for ensuring good connection, for NodeJS app, which
+will display results on a web browser.
+
+podman run -it --name tejarat_redis -p 6379:6379 redis
+
+##############################################################
+
+Alternative way of connecting to the redis container:
+
+podman start tejarat_redis 
+
+podman exec -it tejarat_redis redis-cli
+
+SET key1 Aris
+
+SET key2 Tejarat
+
+podman logs tejarat_redis 
+
+
+################################################################
+
+################################################################
+This command creates a nodeJS container. This container will attempt to connect to an existing redis container, via
+a prespecified network and a prespecified port (6379). it will also allow users to access it via port 3001. After submiting 
+values via flask app, the user can click "refresh" button on this NodeJS app, and view the values stored inside the redis container.
+
+This is the final step of setting up a three-tier app.
+
+podman run -it --name tejaris-frn-node-to-redis --network tejarat-network -p 3001:3001 amazon_tejarat_node_redis_webapp:latest
+
+###############################################################

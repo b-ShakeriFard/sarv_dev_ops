@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nodejs-configmap
+data:
+  REDIS_HOST: redis-service
+  REDIS_PORT: "6379"

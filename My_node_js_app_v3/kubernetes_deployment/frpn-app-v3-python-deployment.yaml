@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: python-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frpn-python-app-v3
+  template:
+    metadata:
+      labels:
+        app: frpn-python-app-v3
+    spec:
+      tolerations:
+        - key: "node-role.kubernetes.io/control-plane"
+          operator: "Exists"
+          effect: "NoSchedule"
+      containers:
+        - name: python-container
+          image: localhost:5000/frpn-python-app-2025-07-27:v3
+          ports:
+            - containerPort: 5004
+          volumeMounts:
+            - name: calendar-logs
+              mountPath: /data
+      volumes:
+        - name: calendar-logs
+          persistentVolumeClaim:
+            claimName: frpn-python-app-pvc

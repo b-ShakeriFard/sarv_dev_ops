@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: frpn-flask-pod-v3
+  labels:
+    app: frpn-flask-app-v3
+spec:
+  tolerations:
+    - key: "node-role.kubernetes.io/control-plane"
+      operator: "Exists"
+      effect: "NoSchedule"
+  containers:
+    - name: flask-container
+      image: localhost:5000/frpn-flask-app-2025-07-22:v3
+      ports: 
+        - containerPort: 5000
+      env:
+        - name: REDIS_HOST
+          value: "redis-service"
+          

@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: flask-v2-service-nodeport
+spec:
+  type: NodePort
+  selector: 
+    app: frn-flask-app-v2
+  ports:
+    - port: 3000
+      targetPort: 5000
+      nodePort: 30090
+
+
+
+

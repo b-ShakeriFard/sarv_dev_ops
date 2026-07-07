@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: redis-pod
+  labels: 
+    app: frn-v1-redis
+spec:
+  tolerations: 
+    - key: "node-role.kubernetes.io/control-plane"
+      operator: "Exists"
+      effect: "NoSchedule"
+  containers:
+    - name: redis
+      image: localhost:5000/redis:latest
+      ports:
+        - containerPort: 6379

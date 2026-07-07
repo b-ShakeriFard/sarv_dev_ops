@@ -1,0 +1,18 @@
+{
+  "name": "node_js_redis_test_app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.1",
+    "ioredis": "^5.4.1",
+    "redis": "^4.7.0"
+  }
+}

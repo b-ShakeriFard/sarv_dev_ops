@@ -1,0 +1,54 @@
+###---###
+###---###
+
+December 3rd - 2024
+Behrouz Shakerifard
+
+bshakeri@torontomu.ca
+
+###--###
+###--###
+
+###############################################################
+The flask portion of this app connects to a running redis container, and retrieves one variable 
+stored in 'Key 1'.
+Do not expect more!
+
+podman run -it -p 5000:5000 --network tejarat-network --name tejarat_flask_v2 amazon_tejarat_flask_redis:latest
+
+###############################################################
+
+###############################################################
+Run a redis container, so that you can manually enter two key-value pairs, and retrive them via NodeJS and
+flask containers, with a pre specified network between them, and display results on a web browser.
+
+podman run -it --name tejarat_redis -p 6379:6379 redis
+
+##############################################################
+
+podman start tejarat_redis 
+
+podman exec -it tejarat_redis redis-cli
+
+SET key1 Aris
+
+SET key2 Tejarat
+
+podman logs tejarat_redis 
+
+
+################################################################
+
+################################################################
+This command creates a nodeJS container, and connects it to the existing redis container, via
+a prespecified network for this three-tier app.
+
+podman run -it --name new_node_redis_tejarat --network tejarat-network -p 3001:3001 amazon_tejarat_node_redis_webapp:latest
+
+###############################################################
+
+repitition of the commands:
+
+podman run -it -p 5000:5000 --network tejarat-network --name tejarat_flask_v2 amazon_tejarat_flask_redis:latest 
+
+podman run -it --name new_node_redis_tejarat --network tejarat-network -p 3001:3001 amazon_tejarat_node_redis_webapp:latest 
