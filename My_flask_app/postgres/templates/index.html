@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title> Hello Flask! </title>
+
+</head>
+
+<body>
+	<h1> Hello World! </h1>
+	<p> This is a simple flask App, being displayed on an HTML page.</p>
+
+	<h3> Data from Postgres! </h3>
+
+	<ul>
+		{% for key, value in rows %}
+		<li> <strong> {{ key }}:</strong> {{value}} </li>
+
+		{% endfor %}
+	</ul>
+
+	<p> This file was created on October 27th, 2024. <br>
+
+	Behrouz ShakeriFard, Teh, Ir </p>
+
+</body>
+</html>
+
+

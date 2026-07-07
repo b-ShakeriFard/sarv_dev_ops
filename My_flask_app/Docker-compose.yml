@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  flask_app:
+    build:
+      context: ./app
+    container_name: flask_app
+    ports:
+      - "5005:5005"
+    networks:
+      northwind_psql_db
+
+networks:
+  northwind_psql_db:
+    driver: bridge

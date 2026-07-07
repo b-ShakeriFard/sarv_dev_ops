@@ -1,0 +1,20 @@
+<!DOCTYPE html)
+
+<hrml>
+<head>
+	<title> Northwind Customers</title>
+
+</head>
+
+<body>
+	<ul>
+		{% for customer in customers %}
+			<li> {{ customer.id }} - {{ customer.company_name}} ({{customer.city }}) </li>
+		{% endfor %}
+
+	</ul>
+
+</body>
+</html>
+
+

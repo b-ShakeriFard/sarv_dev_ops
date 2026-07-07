@@ -1,0 +1,77 @@
+Author:
+Behrouz ShakeriFard
+
+Date:
+Early November 2024
+
+File Purpose:
+* Keep track of the Project
+
+Project Purpose:
+1. create container images, using existing base images.
+2. run a simple flask app, while exposing port 5000 to be accessed via a browser
+3. create a local database
+4. create a container image that would utilize postgres image, in order to allow access to the database
+5. connect the flask app to the postgres database (with username and password)
+6. set environment variables
+7. create POD for the app
+8. write manifest file for the Pod
+9. write manifest for the service inside the pod
+10. write replicaset YAML
+11. write deployment YAML
+12. write Secrets
+13. write Persistent Volume Claims
+14. expand the cluster to TWO nodes (CentOS VM)
+15. make sure worker nodes allows Ingress traffic
+16. check the app from the HOST windows machine (bridged network must be activated on Virtual Box)
+17. Begin experimenting with logging and Monitoring tools
+
+NOTE:
+ ( - ) indicates: Done
+ ( ... ) indicates: Task (to be done)
+
+List: 
+ - create a flask app which would display an "index.html" file.
+ - create a docker image: create and test the container using docker compose; create and test the container image with docker build command.
+ - test the image - success. PLEASE run with port mapping: -p 8080:8080
+
+ - create a simple data-base (consist of three key-value pairs)
+ - set username, password for the data-base
+
+### 2024 / Nov / 27th 
+All items above have been accomplished - Done
+Learned: you need to COPY /template folder and its content, specify it separately (from app.py) in the docker-file!
+Learned: docker-compose creates and runs the container without creating the image; while docker build creates the image without building the container!
+
+ - Create "docker-compose.yml" which would test run the postgress container
+ - connect to the running container, and check the db.sql and its content
+ - create a new flask app suitable for connection, flask container, flask image
+ - test run the container and establish conectivity to the postgres container.
+
+ - make sure postgres-db container accepts connection, and prepare it for being matched with the flask app.
+ ... Check the image.
+
+### 2024 / Nov / 30 
+
+- create flask app image - with environment variables for psql db - success
+
+- create a docker image for the Postgress app
+- update the flask app (image)
+- update the "index.html" file
+- run the flask app & Postgress app - make sure the connection is solid!
+
+All done!
+
+ ... write manifest files, and deploy the app.
+ ... create environment variables
+ ... utilize "ConfigMap.yaml"
+ ... utilize "Secrets"
+ ... utilize "base64"
+ ... utilize PVC technology
+
+
+ - app exposes port 5000 for TCP/IP protocol.
+ - app.py contains all application related code.
+
+ ### 2024 / Dec / 1st
+

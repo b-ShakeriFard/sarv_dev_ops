@@ -1,0 +1,19 @@
+version: '3.9'
+
+services:
+    flask_app:
+    build: .
+    container_name: flask_app_container
+    ports:
+      - "5000:5000"
+    depends_on:
+      - postgres_db
+    volumes:
+      - ./templates:/app/templates
+      - ./app.py:/app/app.py
+    environment:
+      DB_HOST: postgres_db
+      DB_NAME: postgresdb
+      DB_USER: behroox
+      DB_PASSWORD: junk00
+

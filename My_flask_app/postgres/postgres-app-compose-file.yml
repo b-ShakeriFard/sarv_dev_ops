@@ -1,0 +1,17 @@
+version: '3.9'
+
+services:
+  postgres_db:
+    build:
+      context: .
+    image: postgres
+    container_name: postgres-test-webapp-db
+    environment:
+      POSTGRES_USER: behroox
+      POSTGRES_PASSWORD: junk00
+      POSTGRES_DB: postgresdb
+    volumes:
+      - ./db.sql:/docker-entrypoint-initdb.d/db.sql:z
+    ports:
+      - "5432:5432"
+
